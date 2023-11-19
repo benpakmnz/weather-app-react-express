@@ -1,0 +1,18 @@
+.flex-item {
+  display: flex;
+
+  &.center {
+    justify-content: center;
+  }
+
+  &.end {
+    justify-content: flex-end;
+  }
+}
+
+.MuiGrid-container.grid-center-items {
+  justify-content: center;
+  direction: column;
+  align-items: center;
+  text-align: center;
+}

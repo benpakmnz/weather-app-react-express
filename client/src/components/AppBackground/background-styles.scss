@@ -1,0 +1,16 @@
+.background-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+
+  img {
+    width: 103vw;
+    height: 104vh;
+    filter: blur(10px);
+    object-fit: cover;
+    display: block;
+    margin: -20px;
+  }
+}
