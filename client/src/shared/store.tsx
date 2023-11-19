@@ -14,6 +14,8 @@ export interface ctx {
   snackbar: { message: string; severity: AlertColor } | null;
   weatherData: IWeatherData;
   backgroundImage: string;
+  city: string;
+  setCity: (city: string) => void;
 }
 
 export const StoreContext = createContext<ctx>({
@@ -38,12 +40,15 @@ export const StoreContext = createContext<ctx>({
   },
   backgroundImage: sunnyDay,
   snackbar: null,
+  city: "",
+  setCity: (city: string) => {},
 });
 
 const StoreContextProvider = (props: { children: React.ReactElement }) => {
   const [uid, setUid] = useState<string | null>(null);
   const [backgroundImage, setBackgroundImage] = useState<string>(sunnyDay);
   const [snackbar, setSnackbar] = useState<ISnackbarProps | null>(null);
+  const [city, setCity] = useState<string>("");
   const [weatherData, setWeatherData] = useState<IWeatherData>({
     cityName: "",
     info: {
@@ -99,6 +104,8 @@ const StoreContextProvider = (props: { children: React.ReactElement }) => {
         backgroundImage,
         handleSnackbar,
         snackbar,
+        setCity,
+        city,
       }}
     >
       {props.children}

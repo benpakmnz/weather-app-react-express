@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { HttpError } from "../common/errors/http-error";
-import mongoDbClient from "../services/userService";
+import { handleFindOne, handleUserBuild } from "../services/userService";
 
 export const login = async (
   req: Request,
@@ -8,10 +8,9 @@ export const login = async (
   next: NextFunction
 ) => {
   const { email } = req.body;
-  const mongoClient = new mongoDbClient();
   let user;
   try {
-    user = await mongoClient.handleFindOne({ email });
+    user = await handleFindOne({ email });
   } catch (err) {
     console.log(err);
     const error = new HttpError(
@@ -23,7 +22,7 @@ export const login = async (
 
   if (!user) {
     try {
-      user = await mongoClient.handleUserBuild({ email });
+      user = await handleUserBuild({ email });
     } catch (err) {
       const error = new HttpError("Signing up failed, please try again.", 500);
       return next(error);

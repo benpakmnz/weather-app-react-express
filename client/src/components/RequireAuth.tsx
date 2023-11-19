@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { StoreContext, ctx } from "../shared/store";
 
 const RequireAuth = ({
@@ -7,11 +7,15 @@ const RequireAuth = ({
 }: {
   children: JSX.Element;
 }): JSX.Element | null => {
-  const { handleLogin, uid } = useContext<ctx>(StoreContext);
+  const { handleLogin, uid, setCity } = useContext<ctx>(StoreContext);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
+    const city = searchParams.get("city");
+    city && setCity(city);
+
     if (!userId) {
       navigate("/login");
     } else {

@@ -3,7 +3,7 @@ import { HttpError } from "../common/errors/http-error";
 import axios from "axios";
 import { getLocationFromIp } from "../util/location";
 import { BadRequestError } from "../common/errors/bad-request-error";
-import mongoDbClient from "../services/userService";
+import { handleFindById, handleUpdateUser } from "../services/userService";
 
 export const getWeather = async (
   req: Request,
@@ -11,12 +11,11 @@ export const getWeather = async (
   next: NextFunction
 ) => {
   const { location, uid } = req.body;
-  const mongoClient = new mongoDbClient();
   const { WEATHER_API_PATH, WEATHERMAP_API_KEY, WEATHER_ICON_PATH } =
     process.env;
   let user: any;
   try {
-    user = await mongoClient.handleFindById(uid);
+    user = await handleFindById(uid);
   } catch (err) {
     const error = new HttpError(
       "Something went wrong, could not update place.",
@@ -46,7 +45,7 @@ export const getWeather = async (
     }
 
     try {
-      await mongoClient.handleUpdateUser(user);
+      await handleUpdateUser(user);
     } catch (err) {
       const error = new HttpError(
         "Something went wrong, could not update place.",

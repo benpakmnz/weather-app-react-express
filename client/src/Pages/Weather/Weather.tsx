@@ -21,10 +21,9 @@ import "./weather-styles.scss";
 import apiConnect from "../../services/apiConnect";
 
 const WeatherPage = () => {
-  const { weatherData, setWeatherData, uid } =
+  const { weatherData, setWeatherData, uid, city, setCity } =
     React.useContext<ctx>(StoreContext);
   const { icon, description, cityName, info, timeStemp } = weatherData;
-  const [cityInput, setCityInput] = useState<string>("");
   const [searchParams, setSearchParams] = useSearchParams();
   const [isShare, setIsShare] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -39,7 +38,7 @@ const WeatherPage = () => {
       });
 
       setWeatherData(res.data.data);
-      setCityInput(res.data.data.cityName);
+      setCity(res.data.data.cityName);
       setSearchParams({ city: res.data.data.cityName });
     } catch (error: any) {
       setError(error?.response?.data.errors[0].message || error.message);
@@ -48,9 +47,9 @@ const WeatherPage = () => {
 
   useEffect(() => {
     if (uid) {
-      const city = searchParams.get("city");
-      city && setCityInput(city);
-      handleWeather(city || "");
+      const paramCity = searchParams.get("city");
+      paramCity && setCity(paramCity);
+      handleWeather(paramCity || city);
     }
   }, [uid]);
 
@@ -60,7 +59,7 @@ const WeatherPage = () => {
         <CardContent>
           <SearchWeatherForm
             handleWeather={handleWeather}
-            cityInput={cityInput}
+            cityInput={city}
             error={error}
           />
           <Grid className="grid-center-items" container mt={3}>
