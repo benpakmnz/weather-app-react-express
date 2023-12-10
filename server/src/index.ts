@@ -13,7 +13,7 @@ const start = async () => {
     console.log(err);
   }
 
-  app.listen(5004, () => {
+  app.listen(process.env.PORT || 5004, () => {
     console.log("Listening in port 5004!!!!!!!");
   });
 };
