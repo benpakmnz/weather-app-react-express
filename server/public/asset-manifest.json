@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1784afe5.css",
+    "main.js": "/static/js/main.778e1cbf.js",
+    "static/js/787.42650831.chunk.js": "/static/js/787.42650831.chunk.js",
+    "static/media/rainy-night.jpg": "/static/media/rainy-night.0d5a1e65af55256added.jpg",
+    "static/media/summer-night.jpg": "/static/media/summer-night.412867b3570d5ffda246.jpg",
+    "static/media/summer-day.jpg": "/static/media/summer-day.3ef4287abb0a3d282eb9.jpg",
+    "static/media/rainy-day.jpg": "/static/media/rainy-day.b3e4be888a57126b9098.jpg",
+    "index.html": "/index.html",
+    "main.1784afe5.css.map": "/static/css/main.1784afe5.css.map",
+    "main.778e1cbf.js.map": "/static/js/main.778e1cbf.js.map",
+    "787.42650831.chunk.js.map": "/static/js/787.42650831.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1784afe5.css",
+    "static/js/main.778e1cbf.js"
+  ]
+}
